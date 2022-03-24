@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  asteroids_api:
+    build: .
+    ports:
+      - 3014:3000
+      - 9229:9229
+    environment:
+      NODE_ENV: run
+    volumes:
+      - ./src:/usr/src/app
+      - ./deploy:/usr/src/app/deploy
+      - asteroids_node_modules:/usr/src/app/node_modules
+    command: npm run dev
+volumes:
+  asteroids_node_modules:
+    driver: local

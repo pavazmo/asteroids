@@ -1,0 +1,37 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Docker: Attach to Node", 
+            "type": "node",
+            "request": "attach",
+            "remoteRoot": "/usr/src/app", // Path inside docker container for the code
+            "localRoot": "${workspaceFolder}/src", // local path for the code
+            "address": "localhost", // To do local testing
+            "port": 9229, // Default port for the debugger process
+            "protocol": "inspector", // Protocol type
+            // Every time we make any change to the server nodemon
+            // makes the debugger to loose the connection, so we have to restart it automatically
+            "restart": true 
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest watch current file",
+            "program": "${workspaceFolder}/src/node_modules/jest/bin/jest",
+            "args": [
+                "${fileBasename}",
+                "--verbose",
+                "-i",
+                "--no-cache",
+                "--watchAll"
+            ],
+            "cwd": "${workspaceFolder}/src",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+         }
+    ]
+}
